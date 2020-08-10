@@ -119,19 +119,12 @@ int		main(int argc, char **argv)
 
 	v = 0;
 	i = 0;
+	if (argc == 1)
+		return (0);
 	arr = argvdup(argc, argv);
 	if (argc == 2)
 		arr = parse_input(argv, arr);
 	i = arr_len(arr);
-	if (i == 1)
-	{
-		write(2, "Error\n", 6);
-		i = 0;
-		while (arr[i])
-			free(arr[i++]);
-		free(arr);
-		return (0);
-	}
 	if (ft_strequ(arr[1], "-v"))
 		v = 1;
 	res = ft_strnew(0);

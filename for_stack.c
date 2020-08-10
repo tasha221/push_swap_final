@@ -59,7 +59,7 @@ int			is_sorted(t_stack *a, t_stack *b)
 
 	if (b->size != 0)
 		return (0);
-	if (a->size == 1)
+	if (a->size == 1 || a->size == 0)
 		return (1);
 	i = 1;
 	res = 1;
