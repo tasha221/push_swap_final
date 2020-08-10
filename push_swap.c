@@ -115,13 +115,13 @@ int		main(int argc, char **argv)
 	char		**arr;
 	int			i;
 
-	if (argc == 1)
-		return (0);
 	i = 0;
 	arr = argvdup(argc, argv);
 	if (argc == 2)
 		arr = parse_input(argv, arr);
 	i = arr_len(arr);
+	if (i == 1)
+		return (0);
 	if (!is_valid_input(arr, i, 0))
 	{
 		for_error(NULL, NULL);
