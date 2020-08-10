@@ -34,13 +34,11 @@ OBJ = $(SRCS:%.c=%.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@	echo "CREATING:" $(NAME)
 	@	ar -rcs $(NAME) $(OBJ)
 
 $(INCLUDES): $(OBJ)
 
 $(OBJ): %.o: %.c
-	@	echo "BUILDING:" $@
 	@	gcc -c $(CFLAGS) $(addprefix '-I', $(INCLUDES)) $< -o $@
 
 clean:
