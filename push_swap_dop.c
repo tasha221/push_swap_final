@@ -58,7 +58,13 @@ int		push_swap2(t_stack *a, t_stack *b, char **arr, int *mas)
 	int		i;
 
 	if (is_sorted(a, b))
+	{
+		free_arr(arr);
+		free(mas);
+		free_stack(a);
+		free_stack(b);
 		return (0);
+	}
 	i = arr_len(arr);
 	bubble(i - 1, mas);
 	if (a->size == 5)
@@ -67,12 +73,7 @@ int		push_swap2(t_stack *a, t_stack *b, char **arr, int *mas)
 		res = sort(a, b, mas);
 	ft_printf("%s", res);
 	i = 0;
-	while (arr[i])
-	{
-		free(arr[i]);
-		i++;
-	}
-	free(arr);
+	free_arr(arr);
 	free(res);
 	free(mas);
 	free_stack(a);

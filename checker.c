@@ -87,16 +87,16 @@ int		do_check(int i, char **arr, int v, char *res)
 	t_stack		*b;
 	int			*mas;
 
-	if (!is_valid_input(arr, i, 1))
-	{
-		for_error(NULL, NULL);
-		free(res);
-		return (0);
-	}
 	mas = make_mas(arr, i);
 	a = make_stack(mas, i - 1 - v, 1, 1);
 	b = make_stack(NULL, 0, 2, 0);
-	if (check(a, b, v, &res))
+	if (!check(a, b, v, &res))
+	{
+		free(res);
+		free_arr(arr);
+		exit(1);
+	}
+	else
 	{
 		if (is_sorted(a, b))
 			ft_printf("OK\n");
@@ -118,15 +118,23 @@ int		main(int argc, char **argv)
 	int			i;
 
 	v = 0;
-	i = 0;
-	if (argc == 1)
-		return (0);
 	arr = argvdup(argc, argv);
 	if (argc == 2)
 		arr = parse_input(argv, arr);
 	i = arr_len(arr);
+	if (i == 1 || (i == 2 && ft_strequ(arr[1], "-v")))
+	{
+		free_arr(arr);
+		return (0);
+	}
 	if (ft_strequ(arr[1], "-v"))
 		v = 1;
+	if (!is_valid_input(arr, i, 1))
+	{
+		for_error(NULL, NULL);
+		free_arr(arr);
+		exit(1);
+	}
 	res = ft_strnew(0);
 	do_check(i, arr, v, res);
 }

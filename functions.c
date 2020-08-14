@@ -120,7 +120,7 @@ int		*make_mas(char **argv, int argc)
 	j = 1;
 	if (ft_strequ(argv[1], "-v"))
 		j = 2;
-	res = (int*)malloc(sizeof(int) * argc - j);
+	res = (int*)malloc(sizeof(int) * (argc - j));
 	i = 0;
 	while (j < argc)
 	{

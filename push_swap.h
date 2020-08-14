@@ -15,7 +15,7 @@
 # define BUFF_SIZE 1
 # include <stdlib.h>
 # include <unistd.h>
-# include "ft_printf/includes/printf.h"
+# include "libft/includes/printf.h"
 
 typedef struct		s_elem
 {

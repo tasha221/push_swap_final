@@ -33,14 +33,14 @@ int			check_s(char **s, int fd)
 		{
 			size = read(fd, buf, BUFF_SIZE);
 			buf[size] = '\0';
-			if (size < BUFF_SIZE)
+			if (size < 1)
 			{
 				if (size < 0 || (size == 0 && *s[0] == '\0'))
 				{
 					free(*s);
 					return (size < 0 ? -1 : 0);
 				}
-				if (buf[size - 1] != '\n')
+				if (!ft_strchr(s[fd], '\n'))
 					ft_strncpy(buf + size, "\n\0", 2);
 			}
 			*s = ft_strjoinfree(*s, buf);
@@ -59,7 +59,7 @@ int			get_next_line(const int fd, char **line)
 
 	if (fd < 0 || fd > 10 || BUFF_SIZE < 1)
 		return (-1);
-	check = check_s(&s[fd], fd);
+	check = check_s(s + fd, fd);
 	if (check < 1)
 		return (check);
 	len = ft_strchr(s[fd], '\n') - s[fd];

@@ -124,8 +124,9 @@ int		main(int argc, char **argv)
 		return (0);
 	if (!is_valid_input(arr, i, 0))
 	{
+		free_arr(arr);
 		for_error(NULL, NULL);
-		return (0);
+		exit(1);
 	}
 	mas = make_mas(arr, i);
 	a = make_stack(mas, i - 1, 1, 0);
