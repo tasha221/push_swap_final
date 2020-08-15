@@ -51,16 +51,17 @@ O_PATH = $(addprefix $(OBJ_DIR), $(OBJ))
 all: $(NAME)
 
 $(NAME): $(OBJ_DIR) $(O_PATH)
-	@ cp $(LIB) ./$(NAME)
-	@ ar -rc $(NAME) $(O_PATH)
-	@ ranlib $(NAME)
+	@cp $(LIB) ./$(NAME)
+	@ar -rc $(NAME) $(O_PATH)
+	@ranlib $(NAME)
 
 $(OBJ_DIR):
-	@ mkdir -p obj
+	@make -C $(LIB_DIR)
+	@mkdir -p obj
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HEADER)
-	@ $(GCC) $< -o $@ -I $(HEADER) -I $(LIB_DIR)
-	@ make -C $(LIB_DIR)
+	@$(GCC) $< -o $@ -I $(HEADER) -I $(LIB_DIR)
+
 
 fclean: clean
 	@ rm -f $(NAME)

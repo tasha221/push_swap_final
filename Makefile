@@ -18,25 +18,24 @@ all:
 	make checker
 	make push_swap
 
-push_swap:
-	@ make -C libft/
-	@ cp libft/libft/libft.a .
-	@ cp libft/libftprintf.a .
-	@ gcc $(FLAGS) functions.c for_stack.c push_swap.c push_swap_dop.c \
-		dop_sort.c make_res.c make_sort.c valid_errors.c for_parse.c libft.a libftprintf.a -o push_swap
+push_swap: cp_lib
+	@gcc $(FLAGS) functions.c for_stack.c push_swap.c push_swap_dop.c \
+	dop_sort.c make_res.c make_sort.c valid_errors.c for_parse.c libft.a libftprintf.a -o push_swap
 
-checker:
-	@ make -C libft/
-	@ cp libft/libft/libft.a .
-	@ cp libft/libftprintf.a .
-	@ gcc $(FLAGS) functions.c for_stack.c get_next_line.c checker.c visual.c valid_errors.c for_parse.c libft.a libftprintf.a -o checker
+checker: cp_lib
+	@gcc $(FLAGS) functions.c for_stack.c get_next_line.c checker.c visual.c valid_errors.c for_parse.c libft.a libftprintf.a -o checker
+
+cp_lib:
+	@make -C $(LIB_DIR)
+	@cp libft/libft/libft.a .
+	@cp libft/libftprintf.a .
 
 clean:
-	@ make clean -C $(LIB_DIR)
+	@make clean -C $(LIB_DIR)
 
 fclean: clean
-	@ make fclean -C $(LIB_DIR)
-	@ rm -rf push_swap checker libft.a libftprintf.a
+	@make fclean -C $(LIB_DIR)
+	@rm -rf push_swap checker libft.a libftprintf.a
 
 re: fclean
-	@ make all
+	@make all
