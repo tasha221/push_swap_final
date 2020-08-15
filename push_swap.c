@@ -115,13 +115,15 @@ int		main(int argc, char **argv)
 	char		**arr;
 	int			i;
 
-	i = 0;
 	arr = argvdup(argc, argv);
 	if (argc == 2)
 		arr = parse_input(argv, arr);
 	i = arr_len(arr);
 	if (i == 1)
+	{
+		free_arr(arr);
 		return (0);
+	}
 	if (!is_valid_input(arr, i, 0))
 	{
 		free_arr(arr);
@@ -131,6 +133,5 @@ int		main(int argc, char **argv)
 	mas = make_mas(arr, i);
 	a = make_stack(mas, i - 1, 1, 0);
 	b = make_stack(NULL, 0, 2, 0);
-	push_swap2(a, b, arr, mas);
-	return (0);
+	return (push_swap2(a, b, arr, mas));
 }
