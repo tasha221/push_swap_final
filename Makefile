@@ -20,10 +20,12 @@ all:
 
 push_swap: cp_lib
 	@gcc $(FLAGS) functions.c for_stack.c push_swap.c push_swap_dop.c \
-	dop_sort.c make_res.c make_sort.c valid_errors.c for_parse.c libft.a libftprintf.a -o push_swap
+	dop_sort.c make_res.c make_sort.c valid_errors.c for_parse.c \
+	libft.a libftprintf.a -o push_swap
 
 checker: cp_lib
-	@gcc $(FLAGS) functions.c for_stack.c get_next_line.c checker.c visual.c valid_errors.c for_parse.c libft.a libftprintf.a -o checker
+	@gcc $(FLAGS) functions.c for_stack.c get_next_line.c checker.c \
+	visual.c valid_errors.c for_parse.c libft.a libftprintf.a -o checker
 
 cp_lib:
 	@make -C $(LIB_DIR)
